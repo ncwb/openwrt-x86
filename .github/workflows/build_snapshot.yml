@@ -81,6 +81,7 @@ jobs:
       continue-on-error: true
       working-directory: /builder
       run: |
+        export GITHUB_REPO=${{ github.repository }}
         [ "${{ matrix.model }}" != "netgear_r8500" ] && export KERNEL_CLANG_LTO=y
         export BUILD_FAST=y ENABLE_CCACHE=y ENABLE_BPF=y ENABLE_LTO=y ENABLE_LRNG=y USE_GCC15=y ENABLE_MOLD=y
         bash <(curl -sS https://raw.githubusercontent.com/${{ github.repository }}/master/openwrt/build.sh) ${{ matrix.tag.type }} ${{ matrix.model }}
