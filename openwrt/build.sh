@@ -29,16 +29,16 @@ ip_info=`curl -sk https://ip.cooluc.com`;
 [ -n "$ip_info" ] && export isCN=`echo $ip_info | grep -Po 'country_code\":"\K[^"]+'` || export isCN=US
 
 # script url
-if [ "$isCN" = "CN" ]; then
-    export mirror=init.cooluc.com
-else
-    export mirror=init2.cooluc.com
-fi
+# if [ "$isCN" = "CN" ]; then
+#    export mirror=init.cooluc.com
+# else
+#    export mirror=init2.cooluc.com
+# fi
 
 # github actions - automatically retrieve `github raw` links
-if [ "$(whoami)" = "runner" ] && [ -n "$GITHUB_REPO" ]; then
+#if [ "$(whoami)" = "runner" ] && [ -n "$GITHUB_REPO" ]; then
     export mirror=raw.githubusercontent.com/$GITHUB_REPO/master
-fi
+#fi
 
 # private gitea
 export gitea=git.cooluc.com
